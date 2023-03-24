@@ -1,10 +1,34 @@
 module.exports = ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
-  port: env.int('PORT', env.int('PORT', process.env.PORT || 1338)),
+  port: env.int('PORT', 1338),
   app: {
     keys: env.array('APP_KEYS'),
   },
   webhooks: {
     populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
+  },
+  database: {
+    client: env('DATABASE_CLIENT', 'postgres'),
+    host: env('DATABASE_HOST'),
+    port: env.int('DATABASE_PORT'),
+    database: env('DATABASE_NAME'),
+    username: env('DATABASE_USERNAME'),
+    password: env('DATABASE_PASSWORD'),
+    ssl: env.bool('DATABASE_SSL', false),
+  },
+  admin: {
+    auth: {
+      secret: env('ADMIN_JWT_SECRET'),
+    },
+  },
+  plugins: {
+    upload: {
+      provider: 'cloudinary',
+      providerOptions: {
+        cloud_name: env('CLOUDINARY_NAME'),
+        api_key: env('CLOUDINARY_KEY'),
+        api_secret: env('CLOUDINARY_SECRET'),
+      },
+    },
   },
 });
