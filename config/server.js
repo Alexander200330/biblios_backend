@@ -37,4 +37,17 @@ module.exports = ({ env }) => ({
     enabled: true,
     origin: '*',
   },
+  middleware: {
+    // Configuración de CORS
+    load: {
+      before: ['cors', 'poweredBy', 'strapi_admin'],
+      after: ['parser', 'router'],
+    },
+    settings: {
+      cors: {
+        enabled: true,
+        origin: env('CORS_ORIGIN', '*'), // Cambiar por el dominio que corresponda
+      },
+    },
+  },
 });
