@@ -1,3 +1,5 @@
+const cors = require('cors');
+
 module.exports = ({ env }) => ({
   host: env('HOST', '0.0.0.0'),
   port: env.int('PORT', 1338),
@@ -30,5 +32,9 @@ module.exports = ({ env }) => ({
         api_secret: env('CLOUDINARY_SECRET'),
       },
     },
+  },
+  cors: {
+    enabled: true,
+    origin: '*',
   },
 });
