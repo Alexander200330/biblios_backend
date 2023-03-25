@@ -1,4 +1,3 @@
-const cors = require('cors');
 
 app.use(cors())
 
@@ -32,23 +31,6 @@ module.exports = ({ env }) => ({
         cloud_name: env('CLOUDINARY_NAME'),
         api_key: env('CLOUDINARY_KEY'),
         api_secret: env('CLOUDINARY_SECRET'),
-      },
-    },
-  },
-  cors: {
-    enabled: true,
-    origin: '*',
-  },
-  middleware: {
-    // Configuración de CORS
-    load: {
-      before: ['cors', 'poweredBy', 'strapi_admin'],
-      after: ['parser', 'router'],
-    },
-    settings: {
-      cors: {
-        enabled: true,
-        origin: env('CORS_ORIGIN', '*'), // Cambiar por el dominio que corresponda
       },
     },
   },
